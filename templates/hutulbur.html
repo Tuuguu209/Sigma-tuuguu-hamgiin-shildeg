@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Хөтөлбөрүүд | Их Засаг Политехник Коллеж</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="nav-container">
+            <a class="logo program-link" href="{{ url_for('index') }}">
+                <img src="{{ url_for('static', filename='Images/school.jpg') }}" alt="" class="logo-img">
+                <div class="logo-text">
+                    <h1>ИХ ЗАСАГ</h1>
+                    <p>ПОЛИТЕХНИК КОЛЛЕЖ</p>
+                </div>
+            </a>
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="{{ url_for('index') }}">Нүүр</a></li>
+                    <li><a href="{{ url_for('index') }}#about">Бидний тухай</a></li>
+                    <li><a href="{{ url_for('index') }}#register" class="btn-nav">Онлайн бүртгэл</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="section bg-light">
+        <div class="section-header">
+            <h2 class="section-title">Сургалтын хөтөлбөрүүд</h2>
+            <p class="section-subtitle">Өөрийн сонирхсон мэргэжлээ сонгон дэлгэрэнгүй мэдээлэлтэй танилцана уу.</p>
+        </div>
+        <div class="programs-grid">
+            {% for slug, program in programs.items() %}
+            <a href="{{ url_for('program_detail', program_slug=slug) }}" class="program-link">
+                <article class="program-card">
+                    <span class="card-icon" aria-hidden="true">{{ program.icon }}</span>
+                    <h3>{{ program.name }}</h3>
+                    <p>{{ program.description }}</p>
+                    <span class="read-more-link">Дэлгэрэнгүй үзэх &rarr;</span>
+                </article>
+            </a>
+            {% endfor %}
+        </div>
+    </main>
+</body>
+</html>
